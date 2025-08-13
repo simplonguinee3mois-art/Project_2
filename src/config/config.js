@@ -9,23 +9,23 @@ console.log('   JWT_SECRET:', process.env.JWT_SECRET ? '✅ Chargée' : '❌ Man
 
 module.exports = {
   // Configuration du serveur
-  port: 3002,
-  nodeEnv: 'development',
+  port: process.env.PORT || 3002,
+  nodeEnv: process.env.NODE_ENV || 'development',
 
   // Configuration MongoDB Atlas (OBLIGATOIRE)
-  mongoUri: 'mongodb+srv://simplonguinee3mois:Alpha.o.b5@cluster0.zx9kzel.mongodb.net/team-task-manager?retryWrites=true&w=majority&appName=Cluster0',
+  mongoUri: process.env.MONGODB_URI || 'mongodb+srv://simplonguinee3mois:Alpha.o.b5@cluster0.zx9kzel.mongodb.net/team-task-manager?retryWrites=true&w=majority&appName=Cluster0',
 
   // Configuration JWT
-  jwtSecret: 'team_task_manager_jwt_secret_2024_secure',
+  jwtSecret: process.env.JWT_SECRET || 'team_task_manager_jwt_secret_2024_secure',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
 
   // Configuration de sécurité
-  bcryptRounds: 12,
-  rateLimitWindowMs: 900000, // 15 minutes
-  rateLimitMaxRequests: 100,
+  bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS) || 12,
+  rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000, // 15 minutes
+  rateLimitMaxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
 
   // Configuration CORS
-  corsOrigin: '*',
+  corsOrigin: process.env.CORS_ORIGIN || '*',
 
   // Validation des données
   validationOptions: {
